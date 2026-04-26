@@ -612,15 +612,15 @@ function renderUpcoming(matches) {
         <label class="title">Partido</label>
         <div class="d-flex align-items-center justify-content-center">
 
-          <div class="match-team text-center">
-            <img src="${getLogo(match.home_team_id, match.home_image_logo)}">
+          <div class="match-team text-center match-team">
+            <img src="${getLogo(match.home_team_id, match.home_image_logo)}" style="border-radius: 50%;">
             <div>${match.home_team_name}</div>
           </div>
 
           <h2 class="px-2 px-lg-3">VS</h2>
 
           <div class="match-team text-center">
-            <img src="${getLogo(match.away_team_id, match.away_image_logo)}">
+            <img src="${getLogo(match.away_team_id, match.away_image_logo)}" style="border-radius: 50%;">
             <div>${match.away_team_name}</div>
           </div>
 
@@ -730,7 +730,7 @@ renderUpcomingFiltered();
 
           <td>
             <div class="team-name">
-              <img class="img-fluid" src="${logo}" alt="${team.name}">
+              <img class="img-fluid" style="border-radius: 50%" src="${logo}" alt="${team.name}">
               <span>${team.name}</span>
             </div>
           </td>
