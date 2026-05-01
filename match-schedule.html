@@ -6,7 +6,7 @@
     <meta name="description" content="PGSports - Sports HTML Template">
     <meta name="author" content="potenzaglobalsolutions.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PGSports - Sports HTML Template</title>
+    <title>Copa Jaguares 2026</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -23,6 +23,102 @@
     
     <!-- Template Style -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      .court-map-fake-preview {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+  margin: 8px 0 10px;
+  background:
+    linear-gradient(135deg, rgba(76, 29, 149, .12), rgba(25, 135, 84, .12)),
+    #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #4c1d95;
+  text-align: center;
+}
+
+.court-map-fake-preview i {
+  font-size: 34px;
+}
+
+.court-map-fake-preview span {
+  font-size: 13px;
+  font-weight: 600;
+}
+  .court-location-popover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .court-location-popover::after {
+    content: " 📍";
+    font-size: 13px;
+  }
+.court-popover-box {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  z-index: 9999;
+  left: 50%;
+  bottom: 130%;
+  transform: translateX(-50%);
+  width: 280px;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.court-location-popover.active .court-popover-box {
+  opacity: 1;
+  visibility: visible;
+}
+
+.court-map-preview {
+  width: 100%;
+  height: 160px;
+  border: 0;
+  border-radius: 10px;
+  margin: 8px 0 10px;
+}
+
+.court-popover-box a {
+  display: inline-block;
+  color: #4c1d95;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+  .court-location-popover:hover .court-popover-box {
+    display: block;
+  }
+.court-popover-box {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.court-location-popover:hover .court-popover-box {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* delay al cerrar */
+.court-location-popover .court-popover-box {
+  transition-delay: 1.5s;
+}
+</style>
   </head>
 
   <body>
@@ -45,10 +141,10 @@
                  <li class="dropdown nav-item">
                 <a class="nav-link" href="about-us.html">el equipo</a>
               </li>
-               </li>
+              <!-- </li>
                  <li class="dropdown nav-item">
                 <a class="nav-link" href="our-history.html">La copa</a>
-              </li>
+              </li> -->
                </li>
                  <li class="dropdown nav-item">
                 <a class="nav-link" href="match-schedule.html">Calendario y resultados</a>
@@ -173,7 +269,8 @@
         <div class="row justify-content-center">
      <div class="col-md-12">
       <ul id="upcoming-category-tabs" class="nav nav-tabs mb-4 justify-content-center"></ul>
-  <div id="upcoming-matches-container">
+  <ul id="upcoming-round-tabs" class="nav nav-pills mb-4 justify-content-center"></ul>
+      <div id="upcoming-matches-container">
     <div class="text-white text-center">Cargando próximos partidos...</div>
   </div>
   <nav class="mt-4">
@@ -206,12 +303,14 @@
       <thead>
         <tr>
           <th>POS</th>
-          <th>TEAM</th>
+          <th>Equipo</th>
           <th>PJ</th>
           <th>PG</th>
           <th>PP</th>
           <th>SF</th>
           <th>SA</th>
+          <th>PF</th>
+<th>PC</th>
           <th>DIF</th>
           <th>PTS</th>
         </tr>
@@ -219,7 +318,7 @@
 
       <tbody id="results-table-body">
         <tr>
-          <td colspan="9" class="text-center">Cargando resultados...</td>
+          <td colspan="11" class="text-center">Cargando resultados...</td>
         </tr>
       </tbody>
     </table>
@@ -285,11 +384,11 @@
               </a>
             </div>
             <div class="col-md-12 col-lg-4">
-              <div class="download-app d-sm-flex align-items-center justify-content-center justify-content-lg-start text-center">
+              <!-- <div class="download-app d-sm-flex align-items-center justify-content-center justify-content-lg-start text-center">
                 <h5 class="title me-3 mb-3 mb-sm-0">Download App</h5>
                 <a href="match-schedule.html#"><img class="img-fluid" src="images/home-03/google-play.png" alt="googleplay"></a>
                 <a href="match-schedule.html#"><img class="img-fluid" src="images/home-03/appleapp.png" alt="appleapp"></a>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="row">
@@ -301,30 +400,11 @@
                 <li><i class="fa-solid fa-phone"></i><span>555 472 2105</span></li>
               </ul>
             </div>
-            <div class="col-lg-4 col-md-6 text-lg-center mb-4 mb-lg-0">
+            <!-- <div class="col-lg-4 col-md-6 text-lg-center mb-4 mb-lg-0">
               <h5 class="footer-title text-primary">Sobre el Equipo</h5>
               <p class="text-white mb-0">For those of you who are serious about having more, doing more, giving more and being more, success is achievable with some understanding of what to do serious about having more, doing more.</p>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-              <h5 class="footer-title text-primary">Useful Links</h5>
-              <div class="footer-menu">
-                 <ul>
-                  <li><a href="portfolio.html">Portfolio</a></li>
-                  <li><a href="shop.html">Shop</a></li>
-                  <li><a href="match-schedule.html">Match Schedule</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-2 col-md-6">
-              <h5 class="footer-title text-primary">Need help?</h5>
-              <div class="footer-menu">
-                <ul>
-                  <li><a href="faqs.html">Faqs</a></li>
-                  <li><a href="team.html">Team</a></li>
-                  <li><a href="contact-us.html">Contact us</a></li>
-                </ul>
-              </div>
-            </div>
+            </div> -->
+            
           </div>
         </div>
       </div>
@@ -391,7 +471,23 @@
 
     return category ? category.name : categoryId;
   }
+  let courtsData = [];
 
+async function loadCourts() {
+  courtsData = await pb.collection('courts').getFullList({
+    sort: 'name'
+  });
+}
+
+function getCourtByName(courtName) {
+  return courtsData.find(court => court.name === courtName);
+}
+let groupsData = [];
+
+async function loadGroups() {
+  groupsData = await pb.collection('groups').getFullList();
+}
+loadGroups();
   function getTeamLogo(team) {
     if (!team.image_logo || team.image_logo === 'N/A') {
       return 'images/placeholder-team.png';
@@ -411,7 +507,9 @@
         lost: 0,
         setsFor: 0,
         setsAgainst: 0,
-        points: 0
+      points: 0,
+pointsFor: 0,
+pointsAgainst: 0
       };
     }
   }
@@ -428,13 +526,19 @@
         let homeSetsWon = 0;
         let awaySetsWon = 0;
 
-        match.sets.forEach(set => {
-          const home = Number(set.home_points);
-          const away = Number(set.away_points);
+  match.sets.forEach(set => {
+  const home = Number(set.home_points) || 0;
+  const away = Number(set.away_points) || 0;
 
-          if (home > away) homeSetsWon++;
-          if (away > home) awaySetsWon++;
-        });
+  table[match.home_team_id].pointsFor += home;
+  table[match.home_team_id].pointsAgainst += away;
+
+  table[match.away_team_id].pointsFor += away;
+  table[match.away_team_id].pointsAgainst += home;
+
+  if (home > away) homeSetsWon++;
+  if (away > home) awaySetsWon++;
+});
 
         table[match.home_team_id].played++;
         table[match.away_team_id].played++;
@@ -462,43 +566,100 @@
         }
       });
 
-    return Object.values(table).sort((a, b) => {
-      if (b.points !== a.points) return b.points - a.points;
+return Object.values(table).sort((a, b) => {
+  if (b.points !== a.points) return b.points - a.points;
 
-      const diffB = b.setsFor - b.setsAgainst;
-      const diffA = a.setsFor - a.setsAgainst;
+  const diffB = b.setsFor - b.setsAgainst;
+  const diffA = a.setsFor - a.setsAgainst;
 
-      if (diffB !== diffA) return diffB - diffA;
+  if (diffB !== diffA) return diffB - diffA;
 
-      return b.setsFor - a.setsFor;
-    });
+  const pointsDiffB = b.pointsFor - b.pointsAgainst;
+  const pointsDiffA = a.pointsFor - a.pointsAgainst;
+
+  if (pointsDiffB !== pointsDiffA) return pointsDiffB - pointsDiffA;
+
+  return b.pointsFor - a.pointsFor;
+});
   }
+function getActiveGroups() {
+  return standingsByCategory.filter(
+    g => g.categoryId === activeCategoryId
+  );
+}
+function generateStandingsByCategory(matches) {
+  const categoryMap = new Map();
 
-  function generateStandingsByCategory(matches) {
-    const categoryMap = new Map();
+  matches.forEach(match => {
+    const key = `${match.category_id}_${match.group_id}`;
 
-    matches.forEach(match => {
-      if (!categoryMap.has(match.category_id)) {
-        categoryMap.set(match.category_id, []);
-      }
+    if (!categoryMap.has(key)) {
+      categoryMap.set(key, {
+        categoryId: match.category_id,
+        groupId: match.group_id,
+        matches: []
+      });
+    }
 
-      categoryMap.get(match.category_id).push(match);
-    });
+    categoryMap.get(key).matches.push(match);
+  });
 
-    return Array.from(categoryMap.entries()).map(([categoryId, categoryMatches]) => ({
-      categoryId,
-      teams: generateStandings(categoryMatches)
-    }));
-  }
+  return Array.from(categoryMap.values()).map(group => ({
+    categoryId: group.categoryId,
+    groupId: group.groupId,
+    teams: generateStandings(group.matches)
+  }));
+}
   const upcomingContainer = document.getElementById('upcoming-matches-container');
   const upcomingTabs = document.getElementById('upcoming-category-tabs');
-
+const upcomingRoundTabs = document.getElementById('upcoming-round-tabs');
 let upcomingMatches = [];
 let activeUpcomingCategory = '';
+let activeUpcomingRound = '';
 const upcomingPagination = document.getElementById('upcoming-pagination');
 
 let upcomingCurrentPage = 1;
 const upcomingPerPage = 10;
+function getUpcomingMatchesByCategory() {
+  return upcomingMatches.filter(
+    match => match.category_id === activeUpcomingCategory
+  );
+}
+
+function renderUpcomingRoundTabs() {
+  if (!upcomingRoundTabs) return;
+
+  const categoryMatches = getUpcomingMatchesByCategory();
+
+  const uniqueRounds = [
+    ...new Set(categoryMatches.map(match => match.round))
+  ].sort((a, b) => Number(a) - Number(b));
+
+  if (!activeUpcomingRound && uniqueRounds.length > 0) {
+    activeUpcomingRound = String(uniqueRounds[0]);
+  }
+
+  upcomingRoundTabs.innerHTML = uniqueRounds.map(round => `
+    <li class="nav-item">
+      <button
+        type="button"
+        class="nav-link ${String(activeUpcomingRound) === String(round) ? 'active' : ''}"
+        data-round="${round}">
+        Jornada ${round}
+      </button>
+    </li>
+  `).join('');
+
+  upcomingRoundTabs.querySelectorAll('[data-round]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeUpcomingRound = btn.dataset.round;
+      upcomingCurrentPage = 1;
+
+      renderUpcomingRoundTabs();
+      renderUpcomingFiltered();
+    });
+  });
+}
 function renderUpcomingTabs() {
   if (!upcomingTabs) return;
 
@@ -516,16 +677,20 @@ function renderUpcomingTabs() {
 
   upcomingTabs.querySelectorAll('[data-cat]').forEach(btn => {
     btn.addEventListener('click', () => {
- activeUpcomingCategory = btn.dataset.cat;
+activeUpcomingCategory = btn.dataset.cat;
+activeUpcomingRound = '';
 upcomingCurrentPage = 1;
+
 renderUpcomingTabs();
+renderUpcomingRoundTabs();
 renderUpcomingFiltered();
     });
   });
 }
 function getFilteredUpcomingMatches() {
-  return upcomingMatches.filter(
-    m => m.category_id === activeUpcomingCategory
+  return upcomingMatches.filter(match =>
+    match.category_id === activeUpcomingCategory &&
+    String(match.round) === String(activeUpcomingRound)
   );
 }
 
@@ -630,8 +795,7 @@ function renderUpcoming(matches) {
       <div class="match-date">
         <label class="title">Fecha</label>
       <span class="date">
-  ${match.match_date ? formatDate(match.match_date) : `Jornada ${match.round || '-'} / Partido ${match.match_number || '-'}`}
-</span>
+${match.scheduled_at ? formatDate(match.scheduled_at) : `Jornada ${match.round || '-'} / Partido ${match.match_number || '-'}`}</span>
       </div>
 
       <div class="tournament">
@@ -641,14 +805,41 @@ function renderUpcoming(matches) {
 
       <div class="venue">
         <label class="title">Lugar</label>
-        <span>${match.venue || 'Por definir'}</span>
-      </div>
+${renderCourtLocation(match.court)}
+   </div>
 
     </div>
   `).join('');
 
 }
+function renderCourtLocation(courtName) {
+  if (!courtName) return `<span>Por definir</span>`;
 
+  const court = getCourtByName(courtName);
+
+  if (!court?.location) {
+    return `<span>${courtName}</span>`;
+  }
+
+  return `
+    <span class="court-location-popover">
+      ${courtName} 📍
+
+      <span class="court-popover-box">
+        <strong>${courtName}</strong>
+
+        <div class="court-map-fake-preview">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Ubicación disponible en Google Maps</span>
+        </div>
+
+        <a href="${court.location}" target="_blank" rel="noopener noreferrer">
+          Abrir en Google Maps
+        </a>
+      </span>
+    </span>
+  `;
+}
 async function loadUpcomingMatches() {
   try {
     upcomingContainer.innerHTML = `
@@ -664,9 +855,11 @@ async function loadUpcomingMatches() {
 
 upcomingMatches = matches;
 activeUpcomingCategory = matches[0]?.category_id || '';
+activeUpcomingRound = '';
 upcomingCurrentPage = 1;
 
 renderUpcomingTabs();
+renderUpcomingRoundTabs();
 renderUpcomingFiltered();
 
   } catch (error) {
@@ -683,76 +876,136 @@ renderUpcomingFiltered();
     return standingsByCategory.find(item => item.categoryId === activeCategoryId)?.teams || [];
   }
 
-  function renderTabs() {
-    if (!categoryTabs) return;
+function renderTabs() {
+  if (!categoryTabs) return;
 
-    categoryTabs.innerHTML = standingsByCategory.map(category => `
-      <li class="nav-item">
-        <button
-          type="button"
-          class="nav-link ${activeCategoryId === category.categoryId ? 'active' : ''}"
-          data-category-id="${category.categoryId}">
-          ${getCategoryName(category.categoryId)}
-        </button>
-      </li>
-    `).join('');
+  const uniqueCategories = [
+    ...new Set(standingsByCategory.map(item => item.categoryId))
+  ];
 
-    categoryTabs.querySelectorAll('[data-category-id]').forEach(button => {
-      button.addEventListener('click', () => {
-        activeCategoryId = button.dataset.categoryId;
-        renderTabs();
-        renderTable();
-      });
+  categoryTabs.innerHTML = uniqueCategories.map(categoryId => `
+    <li class="nav-item">
+      <button
+        type="button"
+        class="nav-link ${activeCategoryId === categoryId ? 'active' : ''}"
+        data-category-id="${categoryId}">
+        ${getCategoryName(categoryId)}
+      </button>
+    </li>
+  `).join('');
+
+  categoryTabs.querySelectorAll('[data-category-id]').forEach(button => {
+    button.addEventListener('click', () => {
+      activeCategoryId = button.dataset.categoryId;
+      renderTabs();
+      renderTable();
     });
+  });
+}
+function renderTable() {
+  if (!tableBody) return;
+
+  const groups = getActiveGroups();
+
+  if (!groups.length) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="11" class="text-center">No hay resultados registrados.</td>
+      </tr>
+    `;
+    return;
   }
 
-  function renderTable() {
-    const standings = getActiveStandings();
+  tableBody.innerHTML = groups.map(group => {
+const groupObj = groupsData.find(g => g.id_group === group.groupId);
+const groupName = groupObj ? groupObj.name : `Grupo ${group.groupId}`;
+    return `
+      <tr>
+        <td colspan="11" style="color:black; background:#f8f9fa; font-weight:600;">
+          ${groupName}
+        </td>
+      </tr>
 
-    if (!tableBody) return;
+      ${group.teams.map((team, index) => {
+        const diff = team.setsFor - team.setsAgainst;
+        const logo = getTeamLogo(team);
 
-    if (!standings.length) {
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="9" class="text-center">No hay resultados registrados.</td>
-        </tr>
-      `;
-      return;
-    }
+        return `
+          <tr>
+            <th>${index + 1}</th>
 
-    tableBody.innerHTML = standings.map((team, index) => {
-      const diff = team.setsFor - team.setsAgainst;
-      const logo = getTeamLogo(team);
+            <td>
+              <div class="team-name">
+                <img class="img-fluid" style="border-radius: 50%" src="${logo}">
+                <span>${team.name}</span>
+              </div>
+            </td>
 
-      return `
-        <tr>
-          <th scope="row">${index + 1}</th>
+            <td>${team.played}</td>
+            <td>${team.won}</td>
+            <td>${team.lost}</td>
+            <td>${team.setsFor}</td>
+            <td>${team.setsAgainst}</td>
+            <td>${team.pointsFor}</td>
+            <td>${team.pointsAgainst}</td>
+            <td>${diff}</td>
+            <td>${team.points}</td>
+          </tr>
+        `;
+      }).join('')}
 
-          <td>
-            <div class="team-name">
-              <img class="img-fluid" style="border-radius: 50%" src="${logo}" alt="${team.name}">
-              <span>${team.name}</span>
-            </div>
-          </td>
+    `;
+  }).join('');
+}
+//   function renderTable() {
+//     const standings = getActiveStandings();
 
-          <td>${team.played}</td>
-          <td>${team.won}</td>
-          <td>${team.lost}</td>
-          <td>${team.setsFor}</td>
-          <td>${team.setsAgainst}</td>
-          <td>${diff}</td>
-          <td>${team.points}</td>
-        </tr>
-      `;
-    }).join('');
-  }
+//     if (!tableBody) return;
+
+//     if (!standings.length) {
+//       tableBody.innerHTML = `
+//         <tr>
+//           <td colspan="11" class="text-center">No hay resultados registrados.</td>
+//         </tr>
+//       `;
+//       return;
+//     }
+
+//     tableBody.innerHTML = standings.map((team, index) => {
+//       const diff = team.setsFor - team.setsAgainst;
+//       const logo = getTeamLogo(team);
+
+//       return `
+//         <tr>
+//           <th scope="row">${index + 1}</th>
+
+//           <td>
+//             <div class="team-name">
+//               <img class="img-fluid" style="border-radius: 50%" src="${logo}" alt="${team.name}">
+//               <span>${team.name}</span>
+//             </div>
+//           </td>
+
+//           <td>${team.played}</td>
+//           <td>${team.won}</td>
+//           <td>${team.lost}</td>
+//       <td>${team.setsFor}</td>
+// <td>${team.setsAgainst}</td>
+// <td>${team.pointsFor}</td>
+// <td>${team.pointsAgainst}</td>
+// <td>${diff}</td>
+// <td>${team.points}</td>
+//         </tr>
+//       `;
+//     }).join('');
+//   }
 
   async function loadResults() {
     try {
       if (tableBody) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="9" class="text-center">Cargando resultados...</td>
+            <td colspan="11" class="text-center">Cargando resultados...</td>
           </tr>
         `;
       }
@@ -767,7 +1020,11 @@ renderUpcomingFiltered();
       });
 
       standingsByCategory = generateStandingsByCategory(matches);
-      activeCategoryId = standingsByCategory[0]?.categoryId || '';
+      const uniqueCategories = [
+  ...new Set(standingsByCategory.map(item => item.categoryId))
+];
+
+activeCategoryId = uniqueCategories[0] || '';
 
       renderTabs();
       renderTable();
@@ -778,7 +1035,7 @@ renderUpcomingFiltered();
       if (tableBody) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="9" class="text-center text-danger">
+            <td colspan="11" class="text-center text-danger">
               Error cargando resultados.
             </td>
           </tr>
@@ -787,6 +1044,8 @@ renderUpcomingFiltered();
     }
   }
 async function initPage() {
+  await loadGroups();
+  await loadCourts();
   await loadResults();
   await loadUpcomingMatches();
 }
